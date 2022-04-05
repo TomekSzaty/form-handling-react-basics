@@ -8,8 +8,9 @@ export default function Form() {
             lastName: "", 
             email: "", 
             comments: "",
-            isFriendly: true,
-            employment: ""
+            isFriendly: false,
+            employment: "",
+            favTech: ""
         }
     );
 
@@ -23,8 +24,15 @@ export default function Form() {
             }
         });        
     }
+
+    function handleSubmit(event) {
+        event.preventDefault()
+        // submitToApi(formData)
+        console.log(formData)
+    }
+
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <input
                 type="text"
                 placeholder="First Name"
@@ -91,8 +99,6 @@ export default function Form() {
                 <label htmlFor="part-time">Part-Time</label>
                 <br />
 
-
-
                 <input 
                     type="radio"
                     id="full-time"
@@ -102,9 +108,31 @@ export default function Form() {
                     onChange={handleChange}
                 />
                 <label htmlFor="full-time">Full-Time</label>
+            </fieldset>  
+            <br />
+            <hr />  
 
-            </fieldset>
-                      
+            <label htmlFor="favTech">What is your favorite technology?</label>   
+            <br />
+            <select 
+                id="favTech"
+                value={formData.favTech}
+                onChange={handleChange}
+                name="favTech"
+            >
+                <option value="">--Choose--</option>
+                <option value="java">Java</option>
+                <option value="mysql">MySql</option>
+                <option value="spring">Spring</option>
+                <option value="html">Html</option>
+                <option value="js">J-S</option>
+                <option value="css">CSS</option>
+                <option value="react">React</option>                
+            </select>  
+            <br />
+            <br />
+            <hr />   
+            <button>Submit</button>           
         </form>
     );
 }
